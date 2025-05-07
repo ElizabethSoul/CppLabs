@@ -39,19 +39,16 @@ public:
         accessLevel = al;
     }
 
-    // Виртуальный метод для полиморфизма
     virtual void displayInfo() const = 0;
 
-    // Сериализация для сохранения в файл
     virtual void serialize(ofstream& ofs) const {
         ofs << name << endl << id << endl << accessLevel << endl;
     }
 
-    // Десериализация для загрузки из файла
     virtual void deserialize(ifstream& ifs) {
         getline(ifs, name);
         ifs >> id >> accessLevel;
-        ifs.ignore(); // Пропустить символ новой строки
+        ifs.ignore(); 
     }
 };
 
@@ -195,7 +192,6 @@ private:
         return nullptr;
     }
 
-    // Собственная реализация поиска по ID
     User* findUserByIdInternal(int id) const {
         for (size_t i = 0; i < users.size(); ++i) {
             if (users[i]->getId() == id) {
@@ -205,7 +201,6 @@ private:
         return nullptr;
     }
 
-    // Собственная реализация сортировки пузырьком по уровню доступа
     void bubbleSortUsersByAccessLevel() {
         for (size_t i = 0; i < users.size(); ++i) {
             for (size_t j = 0; j < users.size() - i - 1; ++j) {
@@ -236,7 +231,7 @@ public:
     void checkAccess(const User& user, const std::string& resourceName) const {
         bool found = false;
         for (const auto& resource : resources) {
-            if (resource.getName() == resourceName) { // Сравнение названия ресурса
+            if (resource.getName() == resourceName) {
                 found = true;
                 if (resource.checkAccess(user)) {
                     std::cout << "Доступ к " << resourceName << " разрешен для " << user.getName() << std::endl;
@@ -334,7 +329,7 @@ public:
     }
 };
 
-// Вспомогательная функция для добавления пользователя
+//функция для добавления пользователя
 void addNewUser(AccessControlSystem<void>& system) {
     try {
         cout << "Выберите тип пользователя (1 - Студент, 2 - Преподаватель, 3 - Администратор): ";
@@ -374,7 +369,7 @@ void addNewUser(AccessControlSystem<void>& system) {
     }
 }
 
-// Вспомогательная функция для поиска пользователя
+//функция для поиска пользователя
 void searchUser(const AccessControlSystem<void>& system) {
     try {
         cout << "Поиск по (1 - Имя, 2 - ID): ";
@@ -414,7 +409,6 @@ int main() {
     setlocale(LC_ALL, "ru_RU.UTF-8");
     AccessControlSystem<void> system;
 
-    // Инициализация системы с тестовыми данными
     try {
         system.addUser(new Student("Petrova Elizaveta", 1001, 1, "TRI23"));
         system.addUser(new Teacher("Lyubov Alexandrovna", 2001, 3, "T-University"));
