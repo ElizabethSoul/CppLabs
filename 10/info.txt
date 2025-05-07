@@ -1,0 +1,33 @@
+5
+Student
+Petrova Elizaveta
+1001
+1
+TRI23
+Student
+Voloshin Konstantin
+2143
+1
+TRI22
+Teacher
+Lyubov Alexandrovna
+2001
+3
+T-University
+Administrator
+Besarion Meskhi
+3001
+5
+Rector
+Administrator
+Alexander Dibrov
+4321
+5
+Decan
+3
+Lecture hall 8-627
+1
+Laboratory
+3
+Library
+2
